@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import {apply,empty} from '../lib/domain.ts';
+let s=empty();
+const run=(a:any)=>{s=apply(s,a,'test')};
+run({type:'client',name:'Comercio de prueba',price:1000});const clientId=s.clients[0].id;
+run({type:'production',batch:'P-001',quantity:200});
+run({type:'load',quantity:50});run({type:'delivery',clientId,quantity:40});
+assert.equal(s.factory,150);assert.equal(s.truck,10);assert.equal(s.clients[0].stock,40);assert.equal(s.clients[0].debt,0);
+run({type:'settlement',clientId,counted:13,loss:2,reason:'Rotura'});
+assert.equal(s.clients[0].debt,25000);assert.equal(s.clients[0].stock,13);assert.equal(s.cash,0);assert.equal(s.losses[0].status,'Pendiente');
+run({type:'collect',clientId,amount:20000,method:'Efectivo'});assert.equal(s.clients[0].debt,5000);assert.equal(s.cash,20000);
+run({type:'price',clientId,price:1500});run({type:'resolve',lossId:s.losses[0].id,resolution:'Cliente paga'});assert.equal(s.clients[0].debt,7000);
+assert.throws(()=>run({type:'resolve',lossId:s.losses[0].id,resolution:'Cliente paga'}));
+run({type:'return',clientId,quantity:3});assert.equal(s.clients[0].stock,10);assert.equal(s.truck,13);assert.equal(s.clients[0].debt,7000);
+run({type:'unload',quantity:13});assert.equal(s.factory,163);assert.equal(s.truck,0);
+assert.throws(()=>run({type:'delivery',clientId,quantity:1}));assert.throws(()=>run({type:'collect',clientId,amount:7001}));
+assert.throws(()=>run({type:'settlement',clientId,counted:11,loss:0}));assert.throws(()=>run({type:'load',quantity:-2}));assert.throws(()=>run({type:'production',quantity:2.5,batch:'P-2'}));
+assert.throws(()=>run({type:'production',quantity:NaN,batch:'P-2'}));
+run({type:'purchase',title:'Bolsas',supplier:'Proveedor',amount:5000,paid:2000});assert.equal(s.cash,18000);
+run({type:'pay',purchaseId:s.purchases[0].id,amount:3000});assert.equal(s.cash,15000);assert.equal(s.purchases[0].paid,5000);
+assert.throws(()=>run({type:'pay',purchaseId:s.purchases[0].id,amount:1}));
+run({type:'settlement',clientId,counted:8,loss:2,reason:'Derretimiento'});const loss=s.losses.at(-1)!;run({type:'resolve',lossId:loss.id,resolution:'Felifrío absorbe'});assert.equal(s.clients[0].debt,7000);
+assert.equal(s.factory+s.truck+s.clients[0].stock,171); // 200 - 25 vendidas - 4 pérdidas
+console.log('OK: consignación, stock, recuentos, pérdidas, cobros parciales, compras y validaciones.');
