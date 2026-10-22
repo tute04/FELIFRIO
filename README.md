@@ -22,3 +22,15 @@ Base D1 compartida dentro del Site. Registro de movimientos y exportación JSON.
 `node node_modules/typescript/bin/tsc --noEmit`
 
 Compilación con el helper del plugin Sites. Migraciones de esquema en drizzle; las aplica la plataforma al publicar.
+
+## Desarrollo local
+
+Node 24.19.0 y pnpm 11.25.0. Desde la raíz: `pnpm install --frozen-lockfile`, `pnpm test`, `pnpm typecheck`, `pnpm build`. Arranque: `pnpm dev --host 127.0.0.1`.
+
+D1 local debe tener las migraciones de `drizzle/` aplicadas en orden. Usar Wrangler con `--local --config dist/server/wrangler.json --persist-to .wrangler/state`; ejecutar cada SQL sólo cuando no fue aplicado. La nueva tabla `operations` es obligatoria para guardar. No usar `--remote` para ensayos.
+
+Para probar el build: `mkdir -p .sites-runtime/xdg-config` y `XDG_CONFIG_HOME="$PWD/.sites-runtime/xdg-config" pnpm start --port 8787`.
+
+Al perder conexión, usar **Comprobar sin duplicar**: la misma solicitud queda conservada en la pestaña. Ante conflicto, revisar los valores actualizados y confirmar nuevamente. No borrar el almacenamiento de la pestaña mientras haya operaciones pendientes.
+
+Alcance, límites y pasos de despliegue: [primera entrega](docs/primera-entrega.md). Encargo completo: [documento original](docs/encargo-original.md).

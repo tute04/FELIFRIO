@@ -8,6 +8,13 @@
       "when": 1792675974352,
       "tag": "0000_slow_wasp",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1792683584070,
+      "tag": "0001_loving_tattoo",
+      "breakpoints": true
     }
   ]
 }
