@@ -1,5 +1,7 @@
 # Felifrío 1.3: nueva entrega local, pendiente de validación con Defender
 
+**Estado actualizado: retirada.** El usuario confirmó que la descarga 1.3 también muestra «Virus detected» en Chrome. Los cambios descritos abajo no resolvieron el bloqueo. El paquete ya no se ofrece como descarga. Ver [investigación posterior](bloqueo-defender-1.3.md).
+
 La detección de la 1.2 permanece sin resolver. Su ZIP y su HTML siguen retirados. La 1.3 se entrega como versión candidata solicitada por el usuario, sin afirmar que sea una resolución de `Trojan:Script/Ulthar.A!ml`.
 
 ## Cambios concretos

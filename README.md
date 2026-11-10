@@ -6,9 +6,9 @@ Aplicación de producción y distribución de hielo en consignación. Rolito y t
 
 Microsoft Defender detectó `Trojan:Script/Ulthar.A!ml` en el HTML del paquete 1.2. Los paquetes locales se retiraron de la rama mientras se investiga; no abrirlos ni agregar excepciones al antivirus. No se ha confirmado un falso positivo. [Evidencia y estado de la revisión](docs/revision-defender-2026-11-10.md).
 
-## Versión 1.3 para revisión
+## Versión 1.3 también retirada
 
-[Descargar la versión candidata 1.3](demo/Felifrio_App_1.3_Revision.zip). Entrega con archivos separados, código legible y Zod actualizado. Conserva los cuatro productos y los respaldos. **No cuenta con validación de Microsoft Defender** ni se presenta como una corrección confirmada de la detección anterior. Si aparece una alerta, no abrir ni permitir el archivo. [Cambios, pruebas y límites](docs/entrega-local-1.3.md).
+El usuario confirmó que Chrome también bloquea la versión 1.3. Se retiró su descarga: separar archivos y actualizar Zod no resolvió el problema observado. El código y los datos del negocio se conservan. No publicar otro paquete como solución sin un análisis que explique la detección y valide el artefacto exacto. [Investigación y bloqueo pendiente](docs/bloqueo-defender-1.3.md).
 
 ## Operación
 1. Crear clientes y configurar el precio por bolsa de cada producto.

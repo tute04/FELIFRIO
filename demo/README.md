@@ -1,12 +1,8 @@
 # Felifrío · App y materiales
 
-## Versión 1.3 para revisión
+## Versión 1.3 retirada
 
-**[Descargar candidata 1.3](Felifrio_App_1.3_Revision.zip)** · [Cambios y verificación](../docs/entrega-local-1.3.md)
-
-Extraer todo el ZIP y conservar `assets/` junto a `Felifrio_App.html`. Incluye rolito y triturado de 3 y 10 kg, stock y precios separados, cobros y respaldos. El código y los estilos ahora están separados del HTML, y se actualizó el validador de datos.
-
-**La validación con Microsoft Defender está pendiente.** No se garantiza que pase el antivirus ni se ha descartado la alerta de la 1.2 como falso positivo. Si aparece otra detección, no abrir el archivo ni permitirlo.
+El usuario informó el mismo bloqueo de descarga en Chrome para la candidata 1.3. Su ZIP también se retiró. No está resuelto el problema ni se ha confirmado un falso positivo. [Investigación y límites](../docs/bloqueo-defender-1.3.md).
 
 ## App local: descarga suspendida
 
