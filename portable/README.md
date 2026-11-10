@@ -1,6 +1,8 @@
 # App local para pruebas en computadora
 
-`demo/Felifrio_App.html` contiene la aplicación de gestión en un solo archivo. Usa los formularios existentes y las mismas validaciones, reglas de consignación y cálculos monetarios. Empieza vacía; los datos de las pruebas no están incluidos.
+**Distribución suspendida:** Microsoft Defender detectó `Trojan:Script/Ulthar.A!ml` en el artefacto 1.2. No se ha confirmado un falso positivo. Ver [evidencia y estado](../docs/revision-defender-2026-11-10.md). El generador escribe únicamente en `outputs/portable-review/Felifrio_App.html`; no es una entrega aprobada para el usuario.
+
+El HTML contiene la aplicación de gestión en un solo archivo. Usa los formularios existentes y las mismas validaciones, reglas de consignación y cálculos monetarios. Empieza vacía; los datos de las pruebas no están incluidos.
 
 Versión 1.2: cuatro productos (rolito/triturado × 3/10 kg), existencias y precios independientes por cliente, selector en formularios, resumen de bolsas y kilos. Conserva las mejoras de contraste, tipografía y botones de la 1.1.
 

@@ -2,9 +2,9 @@
 
 Aplicación de producción y distribución de hielo en consignación. Rolito y triturado, en bolsas de 3 y 10 kg; un vehículo, producción y embolsado inmediato. Cada producto tiene existencias y precios independientes; los saldos de clientes y fondos reúnen todos los productos.
 
-## Probar en computadora sin instalación
+## Descarga local suspendida
 
-[Descargar la app local](demo/Felifrio_App_Computadora.zip), descomprimir y abrir `Felifrio_App.html` en Chrome o Edge. Permite cargar datos propios y descargarlos como respaldo. Esta versión guarda en el navegador y funciona por separado de la base D1. [Instrucciones](portable/LEEME.txt) · [Detalle técnico y pruebas](portable/README.md).
+Microsoft Defender detectó `Trojan:Script/Ulthar.A!ml` en el HTML del paquete 1.2. Los paquetes locales se retiraron de la rama mientras se investiga; no abrirlos ni agregar excepciones al antivirus. No se ha confirmado un falso positivo. [Evidencia y estado de la revisión](docs/revision-defender-2026-11-10.md).
 
 ## Operación
 1. Crear clientes y configurar el precio por bolsa de cada producto.

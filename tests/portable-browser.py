@@ -28,7 +28,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Handler, directory=str(ROOT)))
 threading.Thread(target=server.serve_forever, daemon=True).start()
 base = f'http://127.0.0.1:{server.server_port}'
-app_url = base + '/demo/Felifrio_App.html'
+app_url = base + '/outputs/portable-review/Felifrio_App.html'
 
 
 def state(page):

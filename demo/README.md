@@ -1,14 +1,8 @@
 # Felifrío · App y materiales
 
-## App para cargar datos y probar en computadora
+## App local: descarga suspendida
 
-**[Descargar app 1.2](Felifrio_App_Computadora_v1.2.zip)** · [Instrucciones](../portable/LEEME.txt)
-
-La versión 1.2 incorpora rolito y triturado en bolsas de 3 y 10 kg, con stock y precios por producto. Conserva los registros de prueba anteriores como rolito de 3 kg. Descargá un respaldo y cerrá las pestañas anteriores antes de actualizar. Conservá el nombre, la carpeta y el navegador del archivo anterior.
-
-Descomprimir y abrir `Felifrio_App.html` en Chrome o Edge. Empieza vacía y permite cargar clientes, producción, repartos, rendiciones, cobros, compras, gastos y tareas. Guarda datos en el navegador y permite descargar e importar respaldos. No requiere instalar dependencias; no se sincroniza con otros equipos.
-
-Ver [funcionamiento y verificación](../portable/README.md).
+Microsoft Defender identificó `Trojan:Script/Ulthar.A!ml` dentro del paquete 1.2. Se retiraron los paquetes locales y el HTML publicado mientras se investiga. No abrir archivos descargados previamente ni permitirlos en el antivirus. [Evidencia y estado](../docs/revision-defender-2026-11-10.md). Los archivos históricos en Git no se consideran una alternativa validada.
 
 ## Promotion v2 — edición revisada
 

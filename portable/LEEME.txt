@@ -1,5 +1,11 @@
 FELIFRÍO 1.2 · CUATRO PRODUCTOS
 
+DESCARGA SUSPENDIDA — 10 DE NOVIEMBRE DE 2026
+Microsoft Defender detectó Trojan:Script/Ulthar.A!ml en el HTML del paquete.
+No abrir los archivos ni permitirlos en el antivirus. No se ha confirmado
+un falso positivo. Las instrucciones siguientes quedan como referencia
+del funcionamiento y no autorizan a usar el artefacto retirado.
+
 1. Descomprimí el ZIP en una carpeta que vayas a conservar.
 2. Abrí Felifrio_App.html con Google Chrome o Microsoft Edge.
    Si se abre como texto: clic derecho > Abrir con > Chrome o Edge.
