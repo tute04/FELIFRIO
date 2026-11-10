@@ -1,20 +1,35 @@
-FELIFRÍO 1.5 · VERSIÓN CELULAR (PWA)
+FELIFRÍO 1.6 · NUBE (SUPABASE)
 
-QUÉ CONTIENE
-index.html: app completa para celular y computadora.
-manifest.webmanifest, service-worker.js e icons/: instalación desde el navegador y uso sin señal.
+La versión web se conecta a Supabase y guarda clientes, movimientos, caja y stock por cuenta autenticada.
 
-CÓMO USAR EN EL CELULAR
-1. Publicá el repositorio en un sitio con HTTPS (por ejemplo Vercel).
-2. Abrí la dirección HTTPS en Safari (iPhone).
-3. Tocá Compartir → Agregar a pantalla de inicio → Agregar.
-4. Abrí Felifrío desde el nuevo ícono. La primera apertura requiere Internet.
+INICIO DE SESIÓN
+1. Abrí la web publicada en Vercel.
+2. Seleccioná "Crear cuenta", ingresá correo y contraseña.
+3. Si pide confirmación, revisá el correo; luego iniciá sesión.
+4. Ingresá con LA MISMA CUENTA en el celular y en la computadora.
 
-DATOS Y RESPALDOS: MUY IMPORTANTE
-- Los datos se guardan en el dispositivo y NO sincronizan entre computadora y celular.
-- Para migrar: Descargar respaldo JSON en el dispositivo anterior, luego Importar respaldo en el nuevo ANTES de registrar movimientos.
-- No publiques respaldos JSON en el repositorio: contienen información del negocio.
-- Realizá respaldos frecuentes. Borrar datos del navegador o quitar la app puede borrar los registros.
+MIGRAR DATOS ANTERIORES
+1. Antes de cambiar de versión, descargá un respaldo JSON desde la app anterior.
+2. Una vez iniciada la sesión en la versión 1.6, hacé clic en "Importar respaldo JSON".
+   También podés usar "Detectar datos anteriores" si los registros locales pertenecen al mismo navegador y dominio.
+3. Revisá la cantidad de clientes y movimientos. Confirmá la importación a Supabase.
+4. Por seguridad, la importación se bloquea si la nube YA contiene movimientos; nunca fusiona ni reemplaza registros en forma automática.
+5. Guardá el respaldo JSON fuera de GitHub, por ejemplo en una carpeta privada.
+
+USO NORMAL
+- Las ventas, las consignaciones, los cobros y las ediciones se guardan directamente en Supabase.
+- El botón "Descargar respaldo" permite exportar una copia de seguridad en JSON.
+- El dispositivo necesita Internet para registrar modificaciones.
+- Sin conexión se puede consultar una última copia previamente descargada, pero NO registrar cambios. El modo sin conexión NO es una cola de sincronización.
+- Si dos equipos intentan guardar sobre datos desactualizados, la app pedirá actualizar antes de confirmar.
 
 SEGURIDAD
-Es una aplicación estática sin datos privados preinstalados. Sin autenticación ni sincronización remota.
+- Supabase Auth se encarga del ingreso con correo y contraseña.
+- Las tablas tienen políticas RLS para limitar los datos a cada cuenta.
+- La clave incluida en index.html es una clave PUBLICABLE, nunca una service_role.
+- Asegurate de configurar en Supabase -> Authentication -> URL Configuration la dirección real de tu sitio en Vercel como Site URL y redirect permitido, para la confirmación por email.
+- Para dos o más usuarios que deban compartir LA MISMA empresa con cuentas diferentes aún se necesita crear un sistema de empresas/permisos. Por ahora cada cuenta tiene su propio espacio.
+- No subas nunca contraseñas, JSON de respaldo ni claves secretas a GitHub.
+
+PROYECTO SUPABASE
+https://supabase.com/dashboard/project/qhdnzqpcrbuhrohuaery
