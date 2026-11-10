@@ -1,0 +1,36 @@
+FELIFRÍO · APP PARA PROBAR EN TU COMPUTADORA
+
+1. Descomprimí el ZIP en una carpeta que vayas a conservar.
+2. Abrí Felifrio_App.html con Google Chrome o Microsoft Edge.
+   Si se abre como texto: clic derecho > Abrir con > Chrome o Edge.
+3. Ya podés cargar tus datos. La app empieza vacía y no necesita instalación.
+
+PARA EMPEZAR
+
+Clientes: agregá el comercio y el precio de cada bolsa.
+Producción: registrá un lote de bolsas de 3 kg.
+Repartos: cargá el vehículo y entregá las bolsas en consignación.
+Rendiciones: anotá cuántas quedaron y las pérdidas, si las hubo.
+Cobros: registrá el pago completo o parcial del cliente.
+
+También podés registrar gastos, compras, pagos a proveedores, pérdidas,
+retiros y tareas. Entregar no genera una venta: la deuda se calcula al rendir.
+
+DÓNDE QUEDAN TUS DATOS
+
+Se guardan en el navegador de esta computadora. El HTML no contiene tus
+registros: enviarle el archivo a otra persona NO le envía tus datos.
+Usá siempre el mismo archivo, carpeta y navegador, fuera del modo privado.
+No se sincronizan con otros equipos ni se envían a Internet.
+
+Al terminar, hacé clic en DESCARGAR RESPALDO. Guardá el archivo JSON.
+Borrar datos del navegador puede borrar los registros de la app.
+Cambiar de navegador, mover el archivo o usar otro equipo puede mostrar
+otra base. Para trasladar registros, importá el JSON en la app vacía.
+La importación no reemplaza datos existentes: los protege.
+
+Si aparece un error al guardar, usá COMPROBAR SIN DUPLICAR antes de volver
+a cargar el movimiento. No limpies el navegador si hay operaciones pendientes.
+
+Esta es una versión local para pruebas. No incluye usuarios compartidos,
+acceso desde varios equipos ni respaldos automáticos en la nube.

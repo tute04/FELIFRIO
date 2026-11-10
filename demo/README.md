@@ -1,4 +1,12 @@
-# Videos de Felifrío
+# Felifrío · App y materiales
+
+## App para cargar datos y probar en computadora
+
+**[Descargar app completa](Felifrio_App_Computadora.zip)** · [Instrucciones](../portable/LEEME.txt)
+
+Descomprimir y abrir `Felifrio_App.html` en Chrome o Edge. Empieza vacía y permite cargar clientes, producción, repartos, rendiciones, cobros, compras, gastos y tareas. Guarda datos en el navegador y permite descargar e importar respaldos. No requiere instalar dependencias; no se sincroniza con otros equipos.
+
+Ver [funcionamiento y verificación](../portable/README.md).
 
 ## Promotion v2 — edición revisada
 

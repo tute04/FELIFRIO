@@ -1,5 +1,5 @@
 'use client';
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useRef,useState,type ReactNode} from 'react';
 import {formAction, type Action} from '../lib/actions';
 import {Snowflake,LayoutDashboard,Factory,Users,Truck,ClipboardCheck,Wallet,CheckSquare,Plus,ArrowUpRight,ArrowDownLeft,ChevronRight,Download,RefreshCw,X,Check,Package,AlertCircle,Search} from 'lucide-react';
 import {empty,money,type State} from '../lib/domain';
@@ -7,28 +7,28 @@ const tabs=[['Inicio',LayoutDashboard],['Producción',Factory],['Clientes',Users
 const date=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'America/Argentina/Cordoba'}).format(new Date());
 const dt=(d:string)=>new Intl.DateTimeFormat('es-AR',{dateStyle:'short',timeStyle:'short',timeZone:'America/Argentina/Cordoba'}).format(new Date(d));
 const titles:Record<string,string>={client:'Nuevo cliente',production:'Registrar producción',load:'Cargar vehículo',unload:'Regresar bolsas a fábrica',delivery:'Entregar en consignación',return:'Retirar bolsas del cliente',settlement:'Rendir ventas del cliente',collect:'Registrar cobro',purchase:'Registrar compra',pay:'Pagar compra',expense:'Registrar gasto',income:'Ingreso de fondos',task:'Nueva tarea',loss:'Pérdida en fábrica',price:'Cambiar precio por bolsa',resolve:'Resolver pérdida'};
-export default function Workspace(){
+export default function Workspace({requestData=fetch,pendingKey='felifrio.pending',localTools}:{requestData?:typeof fetch;pendingKey?:string;localTools?:ReactNode}={}){
  const busy=useRef(false);
  const [pendingRequest,setPendingRequest]=useState<{operationId:string;revision:number;action:Action}|null>(null);
  const [s,S]=useState<State>(empty),[revision,R]=useState(0),[tab,T]=useState('Inicio'),[loading,L]=useState(true),[saving,B]=useState(false),[error,E]=useState(''),[toast,Toast]=useState(''),[modal,M]=useState(''),[f,F]=useState<any>({}),[query,Q]=useState('');
- async function refresh(){try{const r=await fetch('/api/data');const d:any=await r.json();if(!r.ok)throw Error(d.error);S(d.state);R(d.revision);E('');}catch(e){E(String((e as Error).message));}finally{L(false);}}
+ async function refresh(){try{const r=await requestData('/api/data');const d:any=await r.json();if(!r.ok)throw Error(d.error);S(d.state);R(d.revision);E('');}catch(e){E(String((e as Error).message));}finally{L(false);}}
  useEffect(()=>{refresh();const timer=setInterval(refresh,30000);return()=>clearInterval(timer)},[]);
  useEffect(()=>{if(!toast)return;const timer=setTimeout(()=>Toast(''),4000);return()=>clearTimeout(timer)},[toast]);
  function open(type:string,values:any={}){if(pendingRequest){E('Primero comprobá la operación pendiente.');return;}F({quantity:'',amount:'',price:'',paid:0,counted:'',loss:0,date:date(),method:'Transferencia',...values});M(type);E('');}
- useEffect(()=>{try{const raw=sessionStorage.getItem('felifrio.pending');if(raw)setPendingRequest(JSON.parse(raw));}catch{E('No se pudo recuperar la operación pendiente. Revisá el historial antes de continuar.')}},[]);
+ useEffect(()=>{try{const raw=sessionStorage.getItem(pendingKey);if(raw)setPendingRequest(JSON.parse(raw));}catch{E('No se pudo recuperar la operación pendiente. Revisá el historial antes de continuar.')}},[]);
  async function act(action:Action){
   if(busy.current)return;
   busy.current=true;B(true);E('');
   const request=pendingRequest??{operationId:crypto.randomUUID(),revision,action};
   try{
-   sessionStorage.setItem('felifrio.pending',JSON.stringify(request));setPendingRequest(request);
-   const r=await fetch('/api/data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(request)});
+   sessionStorage.setItem(pendingKey,JSON.stringify(request));setPendingRequest(request);
+   const r=await requestData('/api/data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(request)});
    const d=await r.json() as {state:State;revision:number;replayed?:boolean;error?:string};
    if(!r.ok){
-    if(r.status>=400&&r.status<500){sessionStorage.removeItem('felifrio.pending');setPendingRequest(null);if(r.status===409)await refresh();}
+    if(r.status>=400&&r.status<500){sessionStorage.removeItem(pendingKey);setPendingRequest(null);if(r.status===409)await refresh();}
     throw Error(d.error);
    }
-   sessionStorage.removeItem('felifrio.pending');setPendingRequest(null);S(d.state);R(d.revision);M('');Toast(d.replayed?'Operación ya guardada. No se duplicó.':'Movimiento guardado');
+   sessionStorage.removeItem(pendingKey);setPendingRequest(null);S(d.state);R(d.revision);M('');Toast(d.replayed?'Operación ya guardada. No se duplicó.':'Movimiento guardado');
   }catch(e){E(e instanceof Error?e.message:'No se pudo confirmar. Reintentá para comprobar el resultado.')}finally{busy.current=false;B(false)}
  }
 
@@ -44,6 +44,7 @@ export default function Workspace(){
  const cf=()=>field('clientId','Cliente','text',s.clients.map(c=>({value:c.id,label:c.name}))),qf=()=>field('quantity','Cantidad de bolsas de 3 kg','number');
  return <div className="shell"><aside className="sidebar"><a className="brand" onClick={()=>T('Inicio')}><span className="brandmark"><Snowflake size={29}/></span><span>FELIFRÍO<small>GESTIÓN DEL NEGOCIO</small></span></a><div className="navlabel">TU OPERACIÓN</div><nav>{tabs.map(([name,Icon])=><button key={name} className={tab===name?'active':''} onClick={()=>{T(name);Q('')}}><Icon size={20}/>{name}{name==='Rendiciones'&&pending.length>0&&<i>{pending.length}</i>}</button>)}</nav><div className="sidebottom"><span className="sun">☀</span><strong>Hecho en las sierras</strong><p>Villa Yacanto · Córdoba</p><div className="pill">BOLSAS DE 3 KG</div><button onClick={exportData}><Download size={16}/>Exportar respaldo</button></div></aside>
  <main><header className="topbar"><span><span className="dot"/> Espacio de trabajo · Felifrío</span><button className="iconbutton" onClick={refresh} aria-label="Actualizar datos"><RefreshCw size={18}/></button><span className="avatar">F</span></header><div className="content"><div className="pagehead"><div><p className="eyebrow">FELIFRÍO / {tab.toUpperCase()}</p><h1>{tab==='Inicio'?'Todo listo para un nuevo día.':tab}</h1><p className="subtitle">{tab==='Inicio'?'Tu producción, tus clientes y tus números, en un solo lugar.': 'Bolsas de 3 kg · Fabricación y distribución en consignación'}</p></div><span className="date">{new Intl.DateTimeFormat('es-AR',{day:'numeric',month:'long',year:'numeric'}).format(new Date())}</span></div>
+ {localTools}
  {pendingRequest&&<div className="notice" role="status">Hay una operación pendiente de confirmar. <button className="button" disabled={saving} onClick={()=>act(pendingRequest.action)}>Comprobar sin duplicar</button></div>}{error&&<div role="alert" className="error"><AlertCircle size={18}/>{error}</div>}{loading?<div className="panel empty">Cargando el negocio…</div>:<>
  {tab==='Inicio'&&<><div className="stats"><div className="stat"><span>En fábrica <Factory size={18}/></span><strong>{s.factory}<em>bolsas</em></strong><small>{s.factory*3} kg disponibles</small></div><div className="stat"><span>En comercios <Users size={18}/></span><strong>{totalClients}<em>bolsas</em></strong><small>Distribuidas en {s.clients.length} clientes</small></div><div className="stat"><span>Pendiente de cobrar <ArrowDownLeft size={18}/></span><strong>{money(debt)}</strong><small>Ventas rendidas y pérdidas a cargo del cliente</small></div><div className="stat blue"><span>Saldo de fondos <Wallet size={18}/></span><strong>{money(s.cash)}</strong><small>Efectivo y cuentas · movimientos registrados</small></div></div>
  <div className="dashboardgrid"><section className="hero"><div><span className="pill">DEL AGUA A TU NEGOCIO</span><h2>El hielo se mueve.<br/>El control queda acá.</h2><p>Registrá un lote, prepará el reparto<br/>y seguí cada bolsa hasta su venta.</p><Btn type="production" label="Registrar producción"/></div><div className="iceart"><div className="icecube a"><Snowflake/></div><div className="icecube b"><Snowflake/></div><div className="icecube c"><Snowflake/></div><span>3<small>KG</small></span></div></section><section className="panel day"><div className="sectionhead"><h2>El día en números</h2><span className="tag">HOY</span></div>{[['Producción',produced+' bolsas'],['Ventas rendidas',sold+' bolsas'],['En el vehículo',s.truck+' bolsas']].map(([k,v])=><div className="dayline" key={k}><span>{k}</span><b>{v}</b></div>)}<button className="textbutton" onClick={()=>T('Repartos')}>Organizar el reparto <ArrowUpRight size={16}/></button></section></div>

@@ -2,6 +2,10 @@
 
 Aplicación privada de producción y distribución de hielo en consignación. Bolsas de 3 kg, un vehículo, producción y embolsado inmediato.
 
+## Probar en computadora sin instalación
+
+[Descargar la app local](demo/Felifrio_App_Computadora.zip), descomprimir y abrir `Felifrio_App.html` en Chrome o Edge. Permite cargar datos propios y descargarlos como respaldo. Esta versión guarda en el navegador y funciona por separado de la base D1. [Instrucciones](portable/LEEME.txt) · [Detalle técnico y pruebas](portable/README.md).
+
 ## Operación
 1. Crear clientes con precio por bolsa.
 2. Registrar producción por lote.
