@@ -1,5 +1,5 @@
-// Felifrío 1.6 · Caché de archivos de la app; nunca almacena respuestas de Supabase.
-const CACHE='felifrio-v1.6-cloud-20261110';
+// Felifrío 1.7 · Caché de archivos de la app; nunca almacena respuestas de Supabase.
+const CACHE='felifrio-v1.7-mobile-20261110';
 const CORE=['./','./index.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/apple-touch-icon.png'];
 self.addEventListener('install',ev=>ev.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',ev=>ev.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('felifrio-v')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
