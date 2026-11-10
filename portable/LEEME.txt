@@ -1,9 +1,21 @@
-FELIFRÍO · APP PARA PROBAR EN TU COMPUTADORA
+FELIFRÍO 1.1 · APP PARA PROBAR EN TU COMPUTADORA
 
 1. Descomprimí el ZIP en una carpeta que vayas a conservar.
 2. Abrí Felifrio_App.html con Google Chrome o Microsoft Edge.
    Si se abre como texto: clic derecho > Abrir con > Chrome o Edge.
 3. Ya podés cargar tus datos. La app empieza vacía y no necesita instalación.
+
+SI YA CARGASTE DATOS EN LA VERSIÓN ANTERIOR
+
+1. Abrí la versión anterior y hacé clic en DESCARGAR RESPALDO.
+2. Guardá ese JSON y cerrá las pestañas de Felifrío.
+3. Reemplazá Felifrio_App.html por el nuevo archivo, conservando el mismo
+   nombre y carpeta. Abrilo con el mismo navegador.
+4. Verificá tus clientes y movimientos. Si aparece vacía, usá IMPORTAR
+   RESPALDO y seleccioná el JSON que guardaste.
+
+No borres los datos del navegador. La versión 1.1 mejora la lectura y el
+diseño; mantiene el formato de los registros y de los respaldos.
 
 PARA EMPEZAR
 

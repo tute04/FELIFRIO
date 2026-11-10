@@ -2,6 +2,8 @@
 
 `demo/Felifrio_App.html` contiene la aplicación de gestión en un solo archivo. Usa los formularios existentes y las mismas validaciones, reglas de consignación y cálculos monetarios. Empieza vacía; los datos de las pruebas no están incluidos.
 
+Versión 1.1: textos y campos más grandes, mayor contraste, navegación activa más visible, botones principales y secundarios diferenciados, y aviso de almacenamiento compacto. La hoja `app/readability.css` se comparte con la app conectada. Se mantienen el nombre de la base IndexedDB, las claves, los recibos y el formato de respaldo de la versión 1.0. Antes de reemplazar el archivo, exportar un respaldo y seguir las instrucciones de actualización de `LEEME.txt`.
+
 ## Generar
 
 ```sh

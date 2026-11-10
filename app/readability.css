@@ -1,0 +1,67 @@
+/* Shared visual refinement for the connected and downloadable apps. */
+:root{--navy:#12344d;--blue:#0877a5;--ink:#18364a;--muted:#526b7d;--line:#dbe5ec}
+body{background:#f2f6fa;font-family:Manrope,Arial,sans-serif;font-size:15px;color:var(--ink)}
+button,input,select{font-family:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #0766ae;outline-offset:3px}
+.sidebar{padding:30px 20px;background:#fff;box-shadow:2px 0 16px #173c5603}
+.brand{font-size:24px;color:#075e89}.brandmark{background:#e5f3fb;color:#0877a5;border-radius:13px}
+.brand small{font-size:8px;letter-spacing:1.4px;color:#506d7f}
+.navlabel{font-size:10px;letter-spacing:1.3px;color:#5c7485;margin:38px 14px 15px}
+nav{gap:8px}nav button{font-size:13px;font-weight:600;color:#466176;min-height:46px;padding:13px;border-radius:9px}
+nav button:hover{background:#f0f5fa;color:#075e89}nav button.active{background:#0b76a6;color:#fff;box-shadow:0 4px 12px #0877a51c}
+nav button.active:before{display:none}
+.sidebottom strong{font-size:12px;color:#254a64}.sidebottom p{font-size:11px;color:#5b7283}
+.sidebottom button{font-size:12px;color:#44677e;min-height:44px}.sidebottom button:hover{color:#075e89}
+.pill{color:#28627f;background:#e6f1f8;font-size:10px;letter-spacing:1.1px}
+.topbar{height:70px;font-size:12px;color:#526b7d}.avatar{color:#075e89;background:#e4f1fa}
+.iconbutton{min-width:36px;min-height:36px;border-radius:7px;color:#47677b}.iconbutton:hover{background:#eaf2f8}
+.content{padding-top:31px}.pagehead{margin-bottom:26px}.eyebrow{font-size:10px;color:#4d7188;letter-spacing:1.5px;margin-bottom:10px}
+h1{font-size:30px;letter-spacing:-1px;color:#15384f}.subtitle{font-size:13px;line-height:1.7;color:#546e81;margin-top:8px}
+.date{color:#486479;font-size:12px;border-color:#d5e1ea;padding:11px 14px}
+.stats{gap:16px;margin-bottom:24px}.stat{padding:22px;border:1px solid #dce6ee;box-shadow:0 3px 12px #1c426807;border-radius:14px;min-width:0}
+.stat>span{font-size:12px;font-weight:600;color:#4b6578;gap:9px}.stat>span svg{color:#4882a2;width:20px;height:20px}
+.stat strong{font-size:32px;line-height:1.2;letter-spacing:-1.1px;margin:17px 0 10px;color:#163a53;white-space:normal;overflow-wrap:anywhere}
+.stat em{font-family:inherit;font-size:12px;color:#536d80;font-weight:500;white-space:nowrap}
+.stat small{font-size:11px;line-height:1.65;color:#597184;display:block}
+.stat.blue{background:#086d99;border-color:#086d99;box-shadow:0 5px 17px #086d991c}.stat.blue strong{color:white}
+.stat.blue>span,.stat.blue em,.stat.blue small,.stat.blue svg{color:#e6f5ff}
+.panel{border:1px solid #dbe5ed;box-shadow:0 3px 13px #183f5b05;border-radius:14px}
+.sectionhead{padding:22px 24px}.sectionhead h2{font-size:16px;color:#173a52}.sectionhead>svg{color:#4b768f}
+.hero{background:linear-gradient(115deg,#e1f0fa,#d5eaf6);border-color:#c4dce9;border-radius:14px;padding:30px;min-height:295px}
+.hero h2{color:#15496c;font-size:29px;line-height:1.28}.hero p{font-size:13px;line-height:1.8;color:#456d87;margin-bottom:24px}
+.hero .pill{color:#225978;background:#ffffffc9;font-size:9px}.iceart{right:2%}
+.button{min-height:44px;padding:12px 17px;font-size:13px;font-weight:700;background:#0877a5;border-color:#0877a5;border-radius:8px;box-shadow:0 2px 3px #163b5007;transition:background .15s,box-shadow .15s}
+.button:hover{background:#055e87;border-color:#055e87;box-shadow:0 3px 8px #086d991c}
+.button.light{background:#fff;border-color:#b9cddc;color:#245874;box-shadow:none}.button.light:hover{background:#eef6fb;border-color:#7faac5}
+.button:disabled{opacity:.65}.button svg{width:18px;height:18px}
+.dayline{font-size:13px;color:#4e6c80;padding:18px 0;border-color:#e1e9ef}.dayline b{font-size:14px;color:#183f59}
+.textbutton{font-size:12px;font-weight:700;color:#066b9a;min-height:36px}.textbutton:hover{text-decoration:underline}
+.tag{font-size:10px;font-weight:700;background:#e6f1f9;color:#25617f;padding:6px 9px;border-radius:6px}
+.tag.amber{background:#fff2d6;color:#80510c}.quick{padding:0 24px 18px}.quick button{padding:18px 0;gap:13px}
+.quick button:hover span{color:#076c9f}.quick span{font-size:13px;color:#2c5069}.quick small{font-size:11px;color:#5b7588;line-height:1.6;margin-top:5px}
+.quick button>svg:first-child{width:39px;height:39px;padding:9px;color:#0d77a3;background:#e9f4fb;border-radius:9px}
+.quick button>svg:last-child{color:#50758c}.notice{font-size:12px;line-height:1.75;color:#405f75;background:#f0f6fa;border:1px solid #e2ebf2}
+.footnote{font-size:11px;line-height:1.8;color:#566f81}.toolbar{gap:12px}.search{padding:11px 13px;min-height:44px;border-color:#c6d7e3;color:#52758a}
+.search input{font-size:13px;line-height:1.5;color:#20455e}.search input::placeholder{color:#60798b}
+table{white-space:nowrap}th{font-size:11px;font-weight:700;letter-spacing:.1px;color:#4d6b7f;background:#f0f5f9;padding:15px 23px;border-color:#dde7ee}
+td{font-size:13px;color:#3c5d75;padding:18px 23px;border-color:#e5edf3}td b{font-size:13px;font-weight:700;color:#21475f}
+td small{font-size:11px;color:#5d7688;margin-top:5px}tbody tr:hover{background:#f8fbfd}
+.actions{gap:8px}.actions button{font-size:12px;font-weight:700;color:#08648d;background:#eaf4fa;min-height:36px;padding:8px 12px;border:1px solid #c7dfed;border-radius:7px}
+.actions button:hover{background:#d9edf8;border-color:#8abbd4}
+.empty{padding:35px 23px;color:#547185}.empty p{font-size:13px;line-height:1.8;max-width:430px}.empty svg{color:#6d9fb9}
+.task{padding:20px 23px}.task b{font-size:14px;color:#294c64}.task small{font-size:12px;color:#5b7486;line-height:1.6}
+.task.done b{color:#647b8b}.checkbox{height:30px;width:30px;border:1.5px solid #91b3c9;color:#0877a5}.task.done .checkbox{background:#e8f4fb}
+.overlay{background:#102f4b85;backdrop-filter:blur(5px)}.modal{width:520px;border-radius:17px;box-shadow:0 24px 80px #102d5045}
+.modal .sectionhead{padding:22px 27px;background:#f7fafc}.modal h2{font-size:20px;color:#193e58}.modal form{padding:24px 27px}
+form label{font-size:13px;font-weight:700;color:#34566e;margin-bottom:20px}
+form input,form select{font-size:15px;min-height:47px;padding:12px 13px;border-color:#b9cddd;border-radius:8px;margin-top:8px;color:#173e59}
+form input:focus,form select:focus{border-color:#0877a5;box-shadow:0 0 0 3px #0877a51a}
+.modal .notice{font-size:12px;padding:13px 15px}.summary{color:#345f79;background:#ecf4fa;font-size:13px;line-height:1.7;padding:15px}
+.calculation{padding:20px;background:#eaf6fd;border-color:#a5cfe5}.calculation span{font-size:12px;color:#345f78}.calculation strong{font-size:25px;color:#075f88;margin:10px 0}
+.calculation small{font-size:12px;color:#406b83;line-height:1.7}.modalactions{gap:11px;padding-top:20px;margin-top:23px}.modalactions .button{min-width:112px}
+.error{font-size:13px;line-height:1.6;background:#fff0ee;border-color:#edb7ad;color:#923629;padding:14px}.toast{font-size:13px;line-height:1.5;background:#17465e;padding:15px 24px;border:1px solid #4b7285}
+footer{color:#627b8e;font-size:10px;padding:25px 0 29px}
+@media(max-width:1200px){.sidebar{width:205px;padding:28px 15px}.brand{font-size:21px}.stat{padding:18px}.stat strong{font-size:28px}.stat small{font-size:10px}.hero h2{font-size:25px}.hero p{font-size:12px}.hero{padding:25px}.hero .iceart{opacity:.45;right:-25px}}
+@media(max-width:900px){.sidebar{width:77px;padding:25px 12px}nav button{font-size:0;min-height:46px;padding:13px}.brandmark{width:48px}.stats{gap:13px}.stats.three .stat strong{font-size:25px}.dashboardgrid{grid-template-columns:1fr}.hero{min-height:280px}.hero .iceart{opacity:.8;right:5%}.dayline{padding:14px 0}.twocol{grid-template-columns:1fr}.stat strong{font-size:30px}.stat small{font-size:11px}}
+@media(max-width:600px){body{font-size:14px}.sidebar{width:100%;padding:12px 14px;gap:13px;background:#fff}.brand{font-size:19px}.brandmark{height:31px;width:31px}.sidebar nav{gap:6px;padding-bottom:2px}nav button{font-size:11px;padding:10px 12px;min-height:39px;gap:7px}nav button.active{box-shadow:none}.content{padding:24px 17px 0}.pagehead{margin-bottom:21px}h1{font-size:26px;line-height:1.25}.subtitle{font-size:12px;max-width:none}.eyebrow{font-size:9px}.stats,.stats.three{gap:11px}.stat{padding:16px 14px;border-radius:12px}.stat>span{font-size:11px;align-items:start}.stat>span svg{height:17px;width:17px}.stat strong,.stats.three .stat strong,.stats .stat.blue strong{font-size:25px;letter-spacing:-.8px;margin:13px 0 8px}.stat em{font-size:11px;margin-left:5px}.stat small{font-size:10px;line-height:1.6}.button,.toolbar .button{font-size:12px;min-height:44px;padding:11px 13px}.toolbar{gap:9px}.hero{padding:25px;min-height:290px}.hero h2{font-size:27px}.hero p{font-size:12px;max-width:230px}.hero .iceart{right:-10px;opacity:.45}.hero .pill{font-size:8px}.sectionhead{padding:19px 17px}.sectionhead h2{font-size:15px}.sectionhead .textbutton{font-size:11px}.quick{padding-inline:17px}.quick span{font-size:13px}.quick small{font-size:11px}.notice{font-size:12px;margin-inline:17px}.footnote{font-size:11px;margin-inline:17px}.tag{font-size:9px}.dayline{font-size:12px}.dayline b{font-size:14px}.modal{border-radius:14px;max-height:88vh}.modal h2{font-size:18px}.modal .sectionhead{padding:20px}.modal form{padding:21px}.modalactions{gap:9px}.modalactions .button{font-size:12px;min-width:0;padding:12px}.modalactions .button:last-child{flex:1}form input,form select{font-size:16px}.task{padding:17px}.task b{font-size:13px}.task small{font-size:11px}th,td{padding:15px 17px}th{font-size:11px}td,td b{font-size:12px}td small{font-size:10px}footer{font-size:9px;flex-wrap:wrap;gap:6px;text-align:center}.toast{font-size:12px}}
+@media(prefers-reduced-motion:reduce){button{transition:none}}

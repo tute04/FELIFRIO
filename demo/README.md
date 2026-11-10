@@ -2,7 +2,9 @@
 
 ## App para cargar datos y probar en computadora
 
-**[Descargar app completa](Felifrio_App_Computadora.zip)** · [Instrucciones](../portable/LEEME.txt)
+**[Descargar app 1.1](Felifrio_App_Computadora_v1.1.zip)** · [Ver diseño](Felifrio_App_v1.1_Vista_Previa.jpg) · [Instrucciones](../portable/LEEME.txt)
+
+La versión 1.1 mejora tamaños de letra, contraste, botones y formularios. Si ya cargaste registros, descargá un respaldo antes de actualizar y conservá el nombre, la carpeta y el navegador del archivo anterior.
 
 Descomprimir y abrir `Felifrio_App.html` en Chrome o Edge. Empieza vacía y permite cargar clientes, producción, repartos, rendiciones, cobros, compras, gastos y tareas. Guarda datos en el navegador y permite descargar e importar respaldos. No requiere instalar dependencias; no se sincroniza con otros equipos.
 
