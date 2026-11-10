@@ -13,3 +13,9 @@ Para WhatsApp, enviar el MP4 como documento si se quiere conservar la calidad or
 ## Primera versión
 
 [Felifrio_Demo_Vertical.mp4](Felifrio_Demo_Vertical.mp4): recorrido de 2 minutos 6 segundos, conservado como referencia.
+
+## Web promocional
+
+[Descargar sitio completo](Felifrio_Web_Promocional.zip) · [Ver diseño](Felifrio_Web_Vista_Previa.jpg) · [Código e instrucciones](../sitio/README.md)
+
+Web adaptable a celulares con demo interactiva y video integrado. El ZIP incluye todos los recursos. La publicación en hosting es independiente y todavía no está configurada.

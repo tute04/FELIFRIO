@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b51ee">
+  <meta name="description" content="Felifrío reúne producción, stock, entregas en consignación y cobros. Conocé la app para llevar el día a día de tu fábrica de hielo.">
+  <meta property="og:title" content="Felifrío — El hielo se mueve. Vos tenés el control.">
+  <meta property="og:description" content="De la fábrica al comercio, cada bolsa cuenta. Conocé Felifrío con una demo interactiva.">
+  <meta property="og:type" content="website">
+  <title>Felifrío — Tu fábrica de hielo, bajo control</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preload" href="assets/Manrope.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <svg class="symbols" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="snow" viewBox="0 0 24 24"><path d="M12 2v20M3.34 7l17.32 10M3.34 17 20.66 7M8.5 4.5 12 8l3.5-3.5M8.5 19.5 12 16l3.5 3.5M3.8 11.3l4.8-1.2-1.3-4.8M20.2 12.7l-4.8 1.2 1.3 4.8M7.3 18.7l1.3-4.8-4.8-1.2M16.7 5.3l-1.3 4.8 4.8 1.2"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="box" viewBox="0 0 24 24"><path d="m3 7 9-5 9 5v10l-9 5-9-5V7Zm0 0 9 5 9-5M12 12v10M7.5 4.5l9 5"/></symbol>
+    <symbol id="truck" viewBox="0 0 24 24"><path d="M3 16V5h11v11H3Zm11-8h4l3 4v4h-7M7 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm11 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="wallet" viewBox="0 0 24 24"><path d="M20 7H5a2 2 0 0 1 0-4h13v4M3 5v14a2 2 0 0 0 2 2h15V7m0 5h-6v5h6m-3-2.5h.01"/></symbol>
+  </svg>
+  <header class="header">
+    <div class="container nav">
+      <a href="#" class="brand" aria-label="Felifrío, inicio"><svg><use href="#snow"/></svg>felifrío</a>
+      <nav aria-label="Navegación principal"><a href="#como-funciona">Cómo funciona</a><a href="#funciones">La app</a><a class="nav-cta" href="#demo">Probá la demo <svg class="diagonal" aria-hidden="true"><use href="#arrow"/></svg></a></nav>
+    </div>
+  </header>
+  <main id="contenido">
+    <section class="hero container">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> PENSADA PARA EL NEGOCIO DEL HIELO</p>
+        <h1>El hielo <br>se mueve.<br><span>Vos tenés <br>el control.</span></h1>
+        <p class="intro">De la fábrica al comercio, cada bolsa cuenta. Organizá tu producción, tus repartos y tus cobros en un solo lugar.</p>
+        <div class="hero-actions"><a class="button primary" href="#demo">Conocé la app <svg><use href="#arrow"/></svg></a><button class="button video-link" data-video><span class="play-icon"><svg class="play-mark" aria-hidden="true" viewBox="0 0 20 20"><path d="m6 3 11 7-11 7Z"/></svg></span> Mirá el video <small>65 s</small></button></div>
+        <div class="hero-note"><span class="mini-check">✓</span> Producción <span>·</span> Consignación <span>·</span> Cobros</div>
+      </div>
+      <div class="hero-visual" aria-label="Vista de la app con datos de ejemplo">
+        <div class="visual-grid"></div><span class="visual-label">EL DÍA A DÍA, MÁS SIMPLE.</span>
+        <svg class="giant-snow"><use href="#snow"/></svg>
+        <div class="phone"><div class="phone-speaker"></div><img src="assets/dashboard.webp" width="702" height="1140" alt="Pantalla de Felifrío: stock en fábrica y comercios, cobros pendientes y fondos" fetchpriority="high"></div>
+        <div class="float-card float-stock"><span class="icon-tile"><svg><use href="#box"/></svg></span><div><small>Stock en fábrica</small><strong>160 <span>bolsas</span></strong></div><span class="card-tick">✓</span></div>
+        <div class="float-card float-payment"><span class="icon-tile lime"><svg><use href="#check"/></svg></span><div><small>Cobro registrado</small><strong>$20.000</strong></div></div>
+        <div class="visual-bottom"><span class="status-dot"></span> TU NEGOCIO, A MANO.<span>Datos de ejemplo</span></div>
+      </div>
+    </section>
+    <div class="ribbon" aria-label="De producción a cobros"><div class="container"><span>PRODUCÍ</span><svg><use href="#snow"/></svg><span>REPARTÍ</span><svg><use href="#snow"/></svg><span>CONTROLÁ</span><svg><use href="#snow"/></svg><span>COBRÁ</span><svg><use href="#snow"/></svg></div></div>
+    <section class="section container" id="como-funciona">
+      <div class="section-heading"><div><p class="eyebrow">01 / DEL AGUA A TU NEGOCIO</p><h2>Cada movimiento.<br><span>En su lugar.</span></h2></div><p>Tu negocio tiene su propio ritmo.<br>Felifrío sigue el recorrido de cada bolsa, desde que la producís hasta que la cobrás.</p></div>
+      <div class="steps">
+        <article><span class="step-number">01</span><svg><use href="#snow"/></svg><h3>Producís</h3><p>Registrás un lote y sabés cuántas bolsas tenés listas en fábrica.</p></article>
+        <article><span class="step-number">02</span><svg><use href="#truck"/></svg><h3>Repartís</h3><p>Cargás el vehículo y dejás las bolsas en cada comercio, en consignación.</p></article>
+        <article><span class="step-number">03</span><svg><use href="#box"/></svg><h3>Contás</h3><p>En la siguiente visita, contás lo que quedó. La app calcula lo vendido.</p></article>
+        <article><span class="step-number">04</span><svg><use href="#wallet"/></svg><h3>Cobrás</h3><p>Anotás el pago, total o parcial, y ves cuánto queda pendiente.</p></article>
+      </div>
+    </section>
+    <section class="demo-section" id="demo"><div class="container">
+      <div class="section-heading"><div><p class="eyebrow">02 / TOCÁ. PROBÁ. ENTENDÉ.</p><h2>Un reparto real.<br><span>Sin vueltas.</span></h2></div><p>Recorré un ejemplo de una visita al almacén.<br>Seleccioná cada paso y mirá cómo cambian los números.</p></div>
+      <div class="demo-layout">
+        <div class="demo-controls" role="tablist" aria-label="Pasos de la demostración" aria-orientation="vertical">
+          <button id="tab-0" role="tab" aria-selected="true" aria-controls="demo-panel" tabindex="0" data-step="0"><span>01</span><div><strong>Prepará la salida</strong><small>200 bolsas producidas. 40 al vehículo.</small></div><b aria-hidden="true"><svg class="diagonal"><use href="#arrow"/></svg></b></button>
+          <button id="tab-1" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-step="1"><span>02</span><div><strong>Dejá las bolsas</strong><small>40 entregadas en consignación.</small></div><b aria-hidden="true"><svg class="diagonal"><use href="#arrow"/></svg></b></button>
+          <button id="tab-2" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-step="2"><span>03</span><div><strong>Contá lo que quedó</strong><small>Quedan 15. Se vendieron 25.</small></div><b aria-hidden="true"><svg class="diagonal"><use href="#arrow"/></svg></b></button>
+          <button id="tab-3" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-step="3"><span>04</span><div><strong>Registrá el cobro</strong><small>Cobrás $20.000. Pendiente: $5.000.</small></div><b aria-hidden="true"><svg class="diagonal"><use href="#arrow"/></svg></b></button>
+        </div>
+        <div id="demo-panel" class="demo-panel" role="tabpanel" aria-labelledby="tab-0" tabindex="0">
+          <div class="demo-top"><span><svg><use href="#snow"/></svg> felifrío</span><span class="demo-badge">DEMO INTERACTIVA</span></div>
+          <div class="demo-state" aria-live="polite" aria-atomic="true"><p id="demo-kicker">SALIDA A REPARTO</p><h3 id="demo-title">Todo listo para salir.</h3><p id="demo-description">Producís 200 bolsas y cargás 40 en el vehículo. En fábrica quedan 160.</p><div class="demo-metrics"><div><span id="metric-a-label">En fábrica</span><strong id="metric-a">160</strong><small id="metric-a-unit">bolsas disponibles</small></div><div><span id="metric-b-label">En el vehículo</span><strong id="metric-b">40</strong><small id="metric-b-unit">bolsas para repartir</small></div></div><div class="demo-insight"><svg><use href="#check"/></svg><p id="demo-insight">Sabés qué quedó en fábrica y qué salió a reparto.</p></div></div>
+          <div class="demo-bottom"><span>Ejemplo: bolsas de 3 kg · $1.000 por bolsa</span><button id="next-step" aria-label="Ver siguiente paso">Siguiente <span>→</span></button></div>
+        </div>
+      </div>
+      <p class="demo-disclaimer">Simulación con datos ficticios. No registra operaciones en la app.</p>
+    </div></section>
+    <section class="section container features" id="funciones">
+      <div class="section-heading"><div><p class="eyebrow">03 / UNA MIRADA. TODO MÁS CLARO.</p><h2>Menos cuentas de memoria.<br><span>Más control, cada día.</span></h2></div></div>
+      <div class="feature-grid"><article class="feature-main"><div><span class="feature-label">TU RESUMEN DIARIO</span><h3>Abrís la app.<br>Sabés cómo estás.</h3><p>Stock en fábrica y comercios, deuda pendiente y saldo de fondos. Los números del negocio, juntos.</p></div><img src="assets/dashboard.webp" width="702" height="1140" loading="lazy" alt="Resumen de stock, deuda pendiente y fondos en Felifrío"><span class="image-caption">Captura real de la app · Datos de ejemplo</span></article>
+        <article class="feature-small"><span class="icon-tile"><svg><use href="#truck"/></svg></span><h3>Entregar no es vender.</h3><p>La entrega mueve stock. La rendición registra la venta. El cobro registra el ingreso. Cada cosa, en su momento.</p><div class="flow-tags"><span>Entrega</span>→<span>Venta</span>→<span>Cobro</span></div></article>
+        <article class="feature-small lime-feature"><span class="icon-tile"><svg><use href="#wallet"/></svg></span><h3>Los pendientes,<br>a la vista.</h3><p>Consultá saldos por cliente, registrá pagos parciales y organizá las tareas de tu próxima visita.</p><div class="pending-row"><span>Almacén Las Sierras<small>Ejemplo de saldo pendiente</small></span><strong>$5.000</strong></div></article></div>
+      <div class="extras"><span>También en Felifrío</span><p>Pérdidas y retiros</p><p>Compras y gastos</p><p>Agenda de tareas</p><p>Historial de movimientos</p></div>
+    </section>
+    <section class="video-section container"><div class="video-copy"><p class="eyebrow">04 / MIRALA EN ACCIÓN</p><h2>Tu próxima forma<br>de llevar el negocio.</h2><p>Un recorrido de 65 segundos por Felifrío.<br>De la primera bolsa al último cobro.</p><button class="button light" data-video><span><svg class="play-mark" aria-hidden="true" viewBox="0 0 20 20"><path d="m6 3 11 7-11 7Z"/></svg></span> Reproducir video <svg class="diagonal" aria-hidden="true"><use href="#arrow"/></svg></button></div><button class="video-art" data-video aria-label="Reproducir el video promocional de Felifrío"><svg class="video-snow"><use href="#snow"/></svg><span class="video-art-title">DEL AGUA<br>A TU<br><em>NEGOCIO.</em></span><span class="big-play"><svg class="play-mark" aria-hidden="true" viewBox="0 0 20 20"><path d="m6 3 11 7-11 7Z"/></svg></span><span class="video-art-note">FELIFRÍO EN 65 SEGUNDOS</span></button></section>
+    <section class="section container faq"><div><p class="eyebrow">LO QUE QUERÉS SABER</p><h2>Las cosas claras.</h2></div><div class="faq-list"><details><summary>¿Para qué negocio está pensada?</summary><p>Para una fábrica de hielo que produce bolsas de 3 kg y reparte en consignación. La versión actual contempla un vehículo y permite organizar producción, clientes, entregas, rendiciones y cobros.</p></details><details><summary>¿La entrega ya genera una deuda?</summary><p>No. La entrega mueve las bolsas al comercio. En la siguiente visita, el recuento permite calcular lo vendido y generar la deuda. Las pérdidas se registran por separado.</p></details><details><summary>¿Puedo registrar un cobro parcial?</summary><p>Sí. Podés registrar una parte del pago y consultar el saldo pendiente del cliente. El saldo de fondos reúne los movimientos de efectivo y cuentas; no representa la ganancia.</p></details><details><summary>¿Esta demo cambia los datos de mi negocio?</summary><p>No. Esta web muestra un ejemplo independiente con datos ficticios. El acceso a la aplicación de gestión se configura por separado.</p></details></div></section>
+    <section class="closing container"><svg><use href="#snow"/></svg><p class="eyebrow">FELIFRÍO · GESTIÓN</p><h2>El próximo reparto,<br>con todo más claro.</h2><a id="contact-cta" class="button primary" href="#demo">Probá la demo <svg class="diagonal" aria-hidden="true"><use href="#arrow"/></svg></a></section>
+  </main>
+  <footer class="container footer"><a class="brand" href="#"><svg><use href="#snow"/></svg>felifrío</a><span>Del agua a tu negocio.</span><button id="share-site">Compartir sitio <svg class="diagonal" aria-hidden="true"><use href="#arrow"/></svg></button><p id="share-feedback" role="status"></p></footer>
+  <dialog id="video-dialog" aria-labelledby="video-title"><div class="dialog-top"><h2 id="video-title">Felifrío en acción</h2><button id="close-video" aria-label="Cerrar video">✕</button></div><video id="promo-video" controls playsinline preload="none"><source src="assets/promo.mp4" type="video/mp4"><track kind="captions" src="assets/promo-es.vtt" srclang="es" label="Español"></video><p>Demo con datos ficticios. <a href="assets/promo.mp4" target="_blank" rel="noopener">Abrir video por separado ↗</a></p></dialog>
+</body>
+</html>
