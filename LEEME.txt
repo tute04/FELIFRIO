@@ -1,0 +1,20 @@
+FELIFRÍO 1.5 · VERSIÓN CELULAR (PWA)
+
+QUÉ CONTIENE
+index.html: app completa para celular y computadora.
+manifest.webmanifest, service-worker.js e icons/: instalación desde el navegador y uso sin señal.
+
+CÓMO USAR EN EL CELULAR
+1. Publicá el repositorio en un sitio con HTTPS (por ejemplo Vercel).
+2. Abrí la dirección HTTPS en Safari (iPhone).
+3. Tocá Compartir → Agregar a pantalla de inicio → Agregar.
+4. Abrí Felifrío desde el nuevo ícono. La primera apertura requiere Internet.
+
+DATOS Y RESPALDOS: MUY IMPORTANTE
+- Los datos se guardan en el dispositivo y NO sincronizan entre computadora y celular.
+- Para migrar: Descargar respaldo JSON en el dispositivo anterior, luego Importar respaldo en el nuevo ANTES de registrar movimientos.
+- No publiques respaldos JSON en el repositorio: contienen información del negocio.
+- Realizá respaldos frecuentes. Borrar datos del navegador o quitar la app puede borrar los registros.
+
+SEGURIDAD
+Es una aplicación estática sin datos privados preinstalados. Sin autenticación ni sincronización remota.
