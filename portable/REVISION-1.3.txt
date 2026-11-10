@@ -1,0 +1,34 @@
+ESTADO DE REVISIÓN · FELIFRÍO 1.3
+
+Microsoft Defender señaló Trojan:Script/Ulthar.A!ml en Felifrio_App.html
+dentro del ZIP 1.2. La alerta de ese archivo no se ha descartado como falso
+positivo. El archivo 1.2 y sus descargas siguen retirados.
+
+CAMBIOS DE LA 1.3
+
+La entrega ahora contiene un HTML pequeño, código JavaScript legible sin
+minificar, estilos CSS separados e icono SVG. Ya no concentra el programa
+y una fuente codificada dentro del HTML. Usa fuentes del sistema.
+La política de contenido impide scripts incrustados, eval, objetos y
+conexiones de datos externas. Sólo carga sus archivos locales.
+No se han introducido instaladores, macros ni comandos para el equipo.
+El modelo de datos y los cuatro productos permanecen iguales a la 1.2.
+El validador Zod se actualiza a 4.6.6, versión corregida según el aviso
+GHSA-mrhx-c7xc-m3w5. Ese aviso describe agotamiento de memoria al validar
+colecciones y no constituye una explicación de la detección de Defender.
+DEPENDENCIAS.json enumera las bibliotecas efectivamente incluidas en el JS.
+
+ALCANCE
+
+La revisión del código, las comprobaciones de archivos y las pruebas de
+funcionamiento NO equivalen a un análisis antivirus. Este entorno no tiene
+Microsoft Defender. No se garantiza que la descarga pase su análisis ni
+se presenta esta versión como una eliminación confirmada de la detección.
+
+No se subió el código ni los archivos a servicios antivirus de terceros.
+SHA256SUMS.txt identifica los archivos generados; las huellas verifican
+integridad, no ausencia de malware.
+
+Si aparece una alerta, no permitas el archivo, no desactives la protección
+ni busques otra copia para eludir el bloqueo. Conservá el nombre de la
+amenaza y el archivo señalado para continuar la revisión.

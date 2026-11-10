@@ -1,5 +1,7 @@
 # App local para pruebas en computadora
 
+**Nueva candidata 1.3:** generar con `node scripts/build-local-folder.mjs` y verificar con `FELIFRIO_FOLDER_BUILD=1 python tests/portable-browser.py`. La salida es una carpeta con HTML, JS y CSS separados, sin fuentes incrustadas y con Zod 4.6.6. Consultar [cambios y límites de validación](../docs/entrega-local-1.3.md). Esta candidata no tiene un resultado confirmado de Microsoft Defender. Las notas de suspensión siguientes se refieren al formato monolítico retirado.
+
 **Distribución suspendida:** Microsoft Defender detectó `Trojan:Script/Ulthar.A!ml` en el artefacto 1.2. No se ha confirmado un falso positivo. Ver [evidencia y estado](../docs/revision-defender-2026-11-10.md). El generador escribe únicamente en `outputs/portable-review/Felifrio_App.html`; no es una entrega aprobada para el usuario.
 
 El HTML contiene la aplicación de gestión en un solo archivo. Usa los formularios existentes y las mismas validaciones, reglas de consignación y cálculos monetarios. Empieza vacía; los datos de las pruebas no están incluidos.

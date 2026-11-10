@@ -2,6 +2,7 @@
 import functools
 import http.server
 import json
+import os
 from pathlib import Path
 import subprocess
 import tempfile
@@ -12,7 +13,8 @@ from playwright.sync_api import sync_playwright, expect
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'outputs' / 'portable-tests'
 OUT.mkdir(parents=True, exist_ok=True)
-subprocess.run(['node', 'scripts/build-portable.mjs'], cwd=ROOT, check=True)
+folder_build = os.environ.get('FELIFRIO_FOLDER_BUILD') == '1'
+subprocess.run(['node', 'scripts/build-local-folder.mjs' if folder_build else 'scripts/build-portable.mjs'], cwd=ROOT, check=True)
 subprocess.run(['node', '--input-type=module', '-e', """
 import {build} from 'vite';
 await build({configFile:false,build:{outDir:'outputs/portable-tests',emptyOutDir:false,
@@ -28,7 +30,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Handler, directory=str(ROOT)))
 threading.Thread(target=server.serve_forever, daemon=True).start()
 base = f'http://127.0.0.1:{server.server_port}'
-app_url = base + '/outputs/portable-review/Felifrio_App.html'
+app_path = '/outputs/felifrio-1.3/Felifrio_App.html' if folder_build else '/outputs/portable-review/Felifrio_App.html'
+app_url = base + app_path
 
 
 def state(page):
@@ -104,7 +107,10 @@ with sync_playwright() as p, tempfile.TemporaryDirectory(prefix='felifrio-browse
     assert state(page) == snapshot
     page.get_by_role('button', name='Cancelar', exact=True).click()
     assert not errors, errors
-    assert outgoing == [app_url], outgoing
+    allowed = {app_url}
+    if folder_build:
+        allowed.update(base + '/outputs/felifrio-1.3/assets/' + name for name in ['app.js','styles.css','favicon.svg'])
+    assert all(url in allowed for url in outgoing), outgoing
     context.close()
 
     # Reopening the browser profile must preserve saved data.

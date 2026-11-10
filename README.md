@@ -6,6 +6,10 @@ Aplicación de producción y distribución de hielo en consignación. Rolito y t
 
 Microsoft Defender detectó `Trojan:Script/Ulthar.A!ml` en el HTML del paquete 1.2. Los paquetes locales se retiraron de la rama mientras se investiga; no abrirlos ni agregar excepciones al antivirus. No se ha confirmado un falso positivo. [Evidencia y estado de la revisión](docs/revision-defender-2026-11-10.md).
 
+## Versión 1.3 para revisión
+
+[Descargar la versión candidata 1.3](demo/Felifrio_App_1.3_Revision.zip). Entrega con archivos separados, código legible y Zod actualizado. Conserva los cuatro productos y los respaldos. **No cuenta con validación de Microsoft Defender** ni se presenta como una corrección confirmada de la detección anterior. Si aparece una alerta, no abrir ni permitir el archivo. [Cambios, pruebas y límites](docs/entrega-local-1.3.md).
+
 ## Operación
 1. Crear clientes y configurar el precio por bolsa de cada producto.
 2. Registrar producción por lote, tipo de hielo y presentación.

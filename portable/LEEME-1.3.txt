@@ -1,0 +1,42 @@
+FELIFRÍO 1.3 · ROLITO Y TRITURADO · 3 Y 10 KG
+
+ANTES DE ABRIR
+
+El paquete 1.2 fue bloqueado por Microsoft Defender. Se mantiene retirado.
+La versión 1.3 usa archivos separados y código sin minificar, pero todavía
+no tiene un resultado de Microsoft Defender confirmado. Leé REVISION.txt.
+Si tu antivirus marca esta descarga, no la abras ni agregues excepciones.
+
+ABRIR LA APP
+
+1. Extraé todo el ZIP a una carpeta que vayas a conservar.
+2. Mantené la carpeta assets junto a Felifrio_App.html.
+3. Abrí Felifrio_App.html con Chrome o Edge. No requiere instalar programas.
+
+No abras el HTML directamente dentro del ZIP: primero extraé todos los archivos.
+No hay instaladores ni archivos .exe, .bat o .ps1 en esta entrega.
+
+FUNCIONAMIENTO
+
+Elegí rolito o triturado, de 3 o 10 kg. Cada variante tiene su stock propio.
+Creá tus clientes. En Clientes > Precio configurá el valor de cada producto
+para cada cliente. Los precios de una variante no se copian a las otras.
+Registrá producción, carga al vehículo y entrega en consignación.
+En cada visita, rendí por separado cuántas bolsas quedaron de cada producto.
+El cobro descuenta del saldo total del cliente.
+También están disponibles pérdidas, retiros, compras, gastos y tareas.
+
+DATOS Y RESPALDOS
+
+Los datos quedan en el navegador de esta computadora. No se envían a Internet
+ni se sincronizan con otros equipos. No uses el modo privado.
+Usá Descargar respaldo al terminar y conservá el archivo JSON.
+Mover el HTML, cambiar de navegador o borrar sus datos puede mostrar una
+base distinta. Podés importar un respaldo en una base vacía.
+
+Si ya tenés registros de una versión anterior, cerrá sus pestañas. Esta
+versión mantiene la base local compatible con la 1.2 y acepta respaldos
+anteriores. Los registros anteriores a la 1.2 se interpretan como rolito de
+3 kg. La importación no reemplaza registros existentes.
+No abras el archivo 1.2 bloqueado para exportar datos: si el nuevo archivo
+no encuentra la base, conservá los datos del navegador y pedí asistencia.

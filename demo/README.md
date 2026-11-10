@@ -1,5 +1,13 @@
 # Felifrío · App y materiales
 
+## Versión 1.3 para revisión
+
+**[Descargar candidata 1.3](Felifrio_App_1.3_Revision.zip)** · [Cambios y verificación](../docs/entrega-local-1.3.md)
+
+Extraer todo el ZIP y conservar `assets/` junto a `Felifrio_App.html`. Incluye rolito y triturado de 3 y 10 kg, stock y precios separados, cobros y respaldos. El código y los estilos ahora están separados del HTML, y se actualizó el validador de datos.
+
+**La validación con Microsoft Defender está pendiente.** No se garantiza que pase el antivirus ni se ha descartado la alerta de la 1.2 como falso positivo. Si aparece otra detección, no abrir el archivo ni permitirlo.
+
 ## App local: descarga suspendida
 
 Microsoft Defender identificó `Trojan:Script/Ulthar.A!ml` dentro del paquete 1.2. Se retiraron los paquetes locales y el HTML publicado mientras se investiga. No abrir archivos descargados previamente ni permitirlos en el antivirus. [Evidencia y estado](../docs/revision-defender-2026-11-10.md). Los archivos históricos en Git no se consideran una alternativa validada.

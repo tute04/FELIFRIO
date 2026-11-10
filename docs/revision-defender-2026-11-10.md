@@ -1,5 +1,7 @@
 # Descarga local suspendida: detección de Microsoft Defender
 
+Actualización: se preparó una [versión candidata 1.3 con archivos separados y una dependencia corregida](entrega-local-1.3.md), a pedido del usuario. No se declara que resuelva esta detección. Los artefactos 1.2 identificados abajo siguen retirados y sin un veredicto de falso positivo.
+
 ## Evidencia disponible
 
 El usuario mostró una detección de Microsoft Defender del 10 de noviembre de 2026:
