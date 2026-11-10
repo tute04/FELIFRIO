@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "Felifrío · Gestión de hielo",
+  "name": "Felifrío · Gestión en la nube",
   "short_name": "Felifrío",
-  "description": "Producción, reparto, consignación, ventas directas y caja.",
+  "description": "Gestión de producción, repartos, ventas y stock sincronizados.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
