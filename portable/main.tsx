@@ -11,7 +11,7 @@ function LocalTools(){
     setBusy(true);
     try {
       const {state}=await readLocal();
-      const file=new Blob([JSON.stringify({format:'felifrio-local-v1',exportedAt:new Date().toISOString(),state},null,2)],{type:'application/json'});
+      const file=new Blob([JSON.stringify({format:'felifrio-local-v2',exportedAt:new Date().toISOString(),state},null,2)],{type:'application/json'});
       const url=URL.createObjectURL(file),link=document.createElement('a');link.href=url;link.download=`Felifrio-respaldo-${new Date().toISOString().slice(0,10)}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),10000);
       setMessage('Se inició la descarga del respaldo. Guardalo en una carpeta segura.');
     }catch(error){setMessage((error as Error).message);}finally{setBusy(false);}
@@ -30,9 +30,9 @@ function LocalTools(){
     catch(error){setMessage((error as Error).message);setBackup(null);setBusy(false);}
   }
   return <section className="local-tools" aria-label="Datos de esta computadora">
-    <div><span className="local-badge">FELIFRÍO LOCAL · VERSIÓN 1.1</span><h2>Guardado en esta computadora.</h2><p>Los datos quedan en este navegador. Descargá un respaldo al terminar.</p></div>
+    <div><span className="local-badge">FELIFRÍO LOCAL · VERSIÓN 1.2</span><h2>Guardado en esta computadora.</h2><p>Los datos quedan en este navegador. Descargá un respaldo al terminar.</p></div>
     <div className="local-buttons"><button className="button" disabled={busy} onClick={exportData}>Descargar respaldo</button><button className="button light" disabled={busy} onClick={()=>picker.current?.click()}>Importar respaldo</button><input ref={picker} type="file" accept=".json,application/json" hidden aria-label="Seleccionar respaldo JSON" onChange={e=>selectFile(e.target.files?.[0])}/></div>
-    <details><summary>Cómo empezar y cuidar tus datos</summary><ol><li>En <b>Clientes</b>, creá el comercio y su precio por bolsa.</li><li>En <b>Producción</b>, registrá el primer lote de bolsas de 3 kg.</li><li>En <b>Repartos</b>, cargá el vehículo y entregá al cliente.</li><li>En <b>Rendiciones</b>, contá lo que quedó; después registrá el cobro.</li></ol><p>Usá siempre este archivo y navegador, fuera del modo privado. Los datos no se envían a Internet ni se sincronizan con otros equipos. Limpiar los datos del navegador puede borrar los registros. Cambiar de navegador, mover el archivo o usar otra computadora puede mostrar una base distinta; el respaldo permite trasladar tus datos. Esta versión no tiene usuarios compartidos ni respaldo automático en la nube.</p></details>
+    <details><summary>Cómo empezar y cuidar tus datos</summary><ol><li>En <b>Clientes</b>, creá el comercio y configurá el precio de cada producto.</li><li>En <b>Producción</b>, elegí rolito o triturado, de 3 o 10 kg, y registrá el lote.</li><li>En <b>Repartos</b>, cargá el vehículo y entregá al cliente.</li><li>En <b>Rendiciones</b>, contá cada producto por separado; después registrá el cobro total o parcial.</li></ol><p>Usá siempre este archivo y navegador, fuera del modo privado. Los datos no se envían a Internet ni se sincronizan con otros equipos. Limpiar los datos del navegador puede borrar los registros. Cambiar de navegador, mover el archivo o usar otra computadora puede mostrar una base distinta; el respaldo permite trasladar tus datos. Esta versión no tiene usuarios compartidos ni respaldo automático en la nube.</p></details>
     {message&&<p className="local-message" role="status">{message}</p>}
     {backup&&<div className="local-import" role="region" aria-label="Revisar respaldo"><h3>Revisá el respaldo antes de importarlo</h3><p>{backup.clients.length} clientes · {backup.entries.length} movimientos · {backup.factory} bolsas en fábrica</p><p>Sólo se importa si este navegador todavía no tiene registros. No se mezclan ni reemplazan datos existentes.</p><div className="local-buttons"><button className="button" disabled={busy} onClick={restore}>{busy?'Importando…':'Confirmar importación'}</button><button className="button light" disabled={busy} onClick={()=>setBackup(null)}>Cancelar</button></div></div>}
   </section>;

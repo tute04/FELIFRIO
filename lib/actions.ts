@@ -1,4 +1,5 @@
 import {z} from 'zod';
+import {PRODUCT_IDS} from './products.ts';
 
 export class ValidationError extends Error {}
 
@@ -16,22 +17,24 @@ function numeric(integer: boolean, zero = false) {
 const quantity = numeric(true);
 const count = numeric(true, true);
 const amount = numeric(false);
+// Omitted only for legacy requests/receipts: they refer to rolito of 3 kg.
+const productId = z.enum(PRODUCT_IDS).optional();
 const date = z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(value => {
   const parsed = new Date(value + 'T00:00:00Z');
   return value.slice(0, 4) !== '0000' && Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
 }, 'La fecha no existe');
 
 export const actionSchemas = {
-  client: z.object({type:z.literal('client'), name:text, address:optionalText, phone:optionalText, price:amount}).strict(),
-  price: z.object({type:z.literal('price'), clientId:reference, price:amount}).strict(),
-  production: z.object({type:z.literal('production'), quantity, batch:text}).strict(),
-  load: z.object({type:z.literal('load'), quantity}).strict(),
-  unload: z.object({type:z.literal('unload'), quantity}).strict(),
-  delivery: z.object({type:z.literal('delivery'), clientId:reference, quantity}).strict(),
-  return: z.object({type:z.literal('return'), clientId:reference, quantity}).strict(),
-  settlement: z.object({type:z.literal('settlement'), clientId:reference, counted:count, loss:count, reason:optionalText}).strict(),
+  client: z.object({type:z.literal('client'), name:text, address:optionalText, phone:optionalText, price:amount, productId}).strict(),
+  price: z.object({type:z.literal('price'), clientId:reference, price:amount, productId}).strict(),
+  production: z.object({type:z.literal('production'), quantity, batch:text, productId}).strict(),
+  load: z.object({type:z.literal('load'), quantity, productId}).strict(),
+  unload: z.object({type:z.literal('unload'), quantity, productId}).strict(),
+  delivery: z.object({type:z.literal('delivery'), clientId:reference, quantity, productId}).strict(),
+  return: z.object({type:z.literal('return'), clientId:reference, quantity, productId}).strict(),
+  settlement: z.object({type:z.literal('settlement'), clientId:reference, counted:count, loss:count, reason:optionalText, productId}).strict(),
   collect: z.object({type:z.literal('collect'), clientId:reference, amount, method:z.enum(['Efectivo','Transferencia'])}).strict(),
-  loss: z.object({type:z.literal('loss'), quantity, reason:text}).strict(),
+  loss: z.object({type:z.literal('loss'), quantity, reason:text, productId}).strict(),
   resolve: z.object({type:z.literal('resolve'), lossId:reference, resolution:z.enum(['Felifrío absorbe','Cliente paga'])}).strict(),
   purchase: z.object({type:z.literal('purchase'), title:text, supplier:text, amount, paid:numeric(false,true)}).strict(),
   pay: z.object({type:z.literal('pay'), purchaseId:reference, amount}).strict(),

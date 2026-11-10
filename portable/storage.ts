@@ -1,5 +1,6 @@
 import {z} from 'zod';
-import {apply, empty, type State} from '../lib/domain';
+import {apply, empty, normalizeState, type State} from '../lib/domain';
+import {PRODUCT_IDS, DEFAULT_PRODUCT, totalBags} from '../lib/products';
 import {parseAction, ValidationError} from '../lib/actions';
 import {cents} from '../lib/money';
 
@@ -15,10 +16,12 @@ let opening:Promise<IDBDatabase>|undefined;
 function database():Promise<IDBDatabase> {
   if (!opening) opening = new Promise<IDBDatabase>((resolve,reject) => {
     if (!globalThis.indexedDB) {reject(new LocalError('Este navegador no permite guardar los datos. Abrí el archivo en Chrome o Edge, fuera del modo privado.',503));return;}
-    const request = indexedDB.open(DATABASE,1);
+    // Version 2 also prevents an older downloaded app from writing legacy
+    // aggregate-only stock over the new product inventory.
+    const request = indexedDB.open(DATABASE,2);
     request.onupgradeneeded = () => {
-      request.result.createObjectStore('state');
-      request.result.createObjectStore('receipts');
+      if(!request.result.objectStoreNames.contains('state'))request.result.createObjectStore('state');
+      if(!request.result.objectStoreNames.contains('receipts'))request.result.createObjectStore('receipts');
     };
     request.onsuccess = () => {const db=request.result;db.onversionchange=()=>{db.close();opening=undefined;};resolve(db);};
     request.onerror = () => reject(new LocalError('No se pudo abrir el almacenamiento local. Usá Chrome o Edge en una ventana normal y permití guardar datos.',503));
@@ -42,7 +45,7 @@ async function transaction<T>(mode:IDBTransactionMode,work:(tx:IDBTransaction,fi
 export function readLocal():Promise<Snapshot> {
   return transaction('readonly',(tx,finish)=>{
     const request=tx.objectStore('state').get('business');
-    request.onsuccess=()=>finish(request.result ?? {state:empty(),revision:0});
+    request.onsuccess=()=>{const current:Snapshot=request.result??{state:empty(),revision:0};finish({...current,state:normalizeState(current.state)});};
   });
 }
 
@@ -63,7 +66,7 @@ export async function mutateLocal(input:unknown):Promise<Snapshot & {replayed:bo
           const previous:Receipt|undefined=previousRequest.result;
           if (previous) {
             if(previous.request!==serialized) throw new LocalError('Ese identificador corresponde a otra operación.',409);
-            finish({...current,replayed:true});return;
+            finish({...current,state:normalizeState(current.state),replayed:true});return;
           }
           if (current.revision!==revision) throw new LocalError('Otra pestaña actualizó los datos. Revisá los valores y volvé a confirmar.',409);
           const updated={state:apply(current.state,action,'Prueba local'),revision:revision+1};
@@ -93,14 +96,18 @@ const stock=z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER);
 const value=z.number().finite().refine(n=>{try{return n===cents(n)/100;}catch{return false;}},'Importe inválido');
 const nonnegative=value.refine(n=>n>=0);
 const positive=value.refine(n=>n>0);
+const productId=z.enum(PRODUCT_IDS);
+const stocks=z.object({'rolito-3':stock,'rolito-10':stock,'triturado-3':stock,'triturado-10':stock}).strict();
+const prices=z.object({'rolito-3':positive.optional(),'rolito-10':positive.optional(),'triturado-3':positive.optional(),'triturado-10':positive.optional()}).strict();
 const list=<T extends z.ZodTypeAny>(schema:T)=>z.array(schema).max(100000);
 const stateSchema=z.object({
   factory:stock,truck:stock,cash:value,
-  clients:list(z.object({id,name:text.min(1),address:text,phone:text,price:positive,stock,debt:nonnegative}).strict()),
-  losses:list(z.object({id,clientId:id,quantity:stock.refine(n=>n>0),price:positive,reason:text,status:z.enum(['Pendiente','Felifrío absorbe','Cliente paga'])}).strict()),
+  schemaVersion:z.literal(2).optional(),inventory:z.object({factory:stocks,truck:stocks}).strict().optional(),
+  clients:list(z.object({id,name:text.min(1),address:text,phone:text,price:nonnegative,stock,debt:nonnegative,stockByProduct:stocks.optional(),prices:prices.optional()}).strict()),
+  losses:list(z.object({id,clientId:id,quantity:stock.refine(n=>n>0),price:positive,reason:text,status:z.enum(['Pendiente','Felifrío absorbe','Cliente paga']),productId:productId.optional()}).strict()),
   tasks:list(z.object({id,title:text,date:z.string().regex(/^\d{4}-\d{2}-\d{2}$/),responsible:text,done:z.boolean()}).strict()),
   purchases:list(z.object({id,title:text,supplier:text,amount:positive,paid:nonnegative}).strict().refine(p=>p.paid<=p.amount)),
-  entries:list(z.object({id,date:z.string().refine(d=>Number.isFinite(Date.parse(d))),type:text,description:text,quantity:stock,amount:value,actor:text,action:z.unknown().optional(),appliedPrice:positive.optional(),pricePolicy:z.enum(['precio-al-rendir','precio-al-informar-perdida']).optional()}).strict()),
+  entries:list(z.object({id,date:z.string().refine(d=>Number.isFinite(Date.parse(d))),type:text,description:text,quantity:stock,amount:value,actor:text,action:z.unknown().optional(),appliedPrice:positive.optional(),pricePolicy:z.enum(['precio-al-rendir','precio-al-informar-perdida']).optional(),productId:productId.optional()}).strict()),
 }).strict();
 
 export function parseBackup(input:unknown):State {
@@ -108,6 +115,12 @@ export function parseBackup(input:unknown):State {
   const parsed=stateSchema.safeParse(input.state);
   if (!parsed.success) throw new LocalError('El respaldo tiene datos inválidos. No se importó ningún dato.');
   const state=parsed.data;
+  if(state.schemaVersion===2 && (!state.inventory||state.clients.some(c=>!c.stockByProduct||!c.prices)||state.losses.some(l=>!l.productId)))throw new LocalError('Al respaldo le falta el detalle por producto.');
+  if(state.inventory && (state.factory!==totalBags(state.inventory.factory)||state.truck!==totalBags(state.inventory.truck)))throw new LocalError('Los totales del respaldo no coinciden con el stock por producto.');
+  for(const c of state.clients){
+    if(c.stockByProduct&&c.stock!==totalBags(c.stockByProduct))throw new LocalError('El stock del cliente no coincide con sus productos.');
+    if(c.prices&&c.price!==(c.prices[DEFAULT_PRODUCT]??0))throw new LocalError('El precio anterior no coincide con rolito de 3 kg.');
+  }
   for(const collection of [state.clients,state.losses,state.tasks,state.purchases,state.entries]) {
     if(new Set(collection.map(item=>item.id)).size!==collection.length) throw new LocalError('El respaldo contiene identificadores duplicados.');
   }
@@ -115,7 +128,9 @@ export function parseBackup(input:unknown):State {
   const clientIds=new Set(state.clients.map(c=>c.id));
   if(state.losses.some(loss=>!clientIds.has(loss.clientId))) throw new LocalError('Una pérdida del respaldo no tiene un cliente válido.');
   for(const task of state.tasks) parseAction({type:'task',title:task.title,date:task.date,responsible:task.responsible});
-  return {...state,entries:state.entries.map(entry=>({...entry,...(entry.action===undefined?{}:{action:parseAction(entry.action)})}))} as State;
+  const normalized=normalizeState({...state,entries:state.entries.map(entry=>({...entry,...(entry.action===undefined?{}:{action:parseAction(entry.action)})}))} as State);
+  if(normalized.entries.some(e=>e.productId&&e.action&&'productId' in e.action&&e.action.productId&&e.productId!==e.action.productId))throw new LocalError('El producto del movimiento no coincide con la operación.');
+  return normalized;
 }
 
 export async function importBackup(input:unknown):Promise<void> {

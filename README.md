@@ -1,16 +1,16 @@
 # Felifrío · Gestión
 
-Aplicación privada de producción y distribución de hielo en consignación. Bolsas de 3 kg, un vehículo, producción y embolsado inmediato.
+Aplicación de producción y distribución de hielo en consignación. Rolito y triturado, en bolsas de 3 y 10 kg; un vehículo, producción y embolsado inmediato. Cada producto tiene existencias y precios independientes; los saldos de clientes y fondos reúnen todos los productos.
 
 ## Probar en computadora sin instalación
 
 [Descargar la app local](demo/Felifrio_App_Computadora.zip), descomprimir y abrir `Felifrio_App.html` en Chrome o Edge. Permite cargar datos propios y descargarlos como respaldo. Esta versión guarda en el navegador y funciona por separado de la base D1. [Instrucciones](portable/LEEME.txt) · [Detalle técnico y pruebas](portable/README.md).
 
 ## Operación
-1. Crear clientes con precio por bolsa.
-2. Registrar producción por lote.
+1. Crear clientes y configurar el precio por bolsa de cada producto.
+2. Registrar producción por lote, tipo de hielo y presentación.
 3. Cargar el vehículo y registrar las entregas en consignación.
-4. Antes de reponer, contar bolsas en el cliente y registrar pérdidas por separado. La rendición calcula `stock registrado - recuento - pérdidas` y genera deuda al precio vigente del cliente.
+4. Antes de reponer, contar cada producto en el cliente y registrar sus pérdidas por separado. La rendición calcula `stock registrado del producto - recuento - pérdidas` y genera deuda al precio vigente de ese producto para el cliente. Sin precio configurado, no permite rendir.
 5. Registrar cobros completos o parciales. Las entregas no generan deuda ni fondos.
 6. Reponer bolsas. Los retiros regresan al vehículo y luego a fábrica.
 

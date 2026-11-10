@@ -1,4 +1,4 @@
-FELIFRÍO 1.1 · APP PARA PROBAR EN TU COMPUTADORA
+FELIFRÍO 1.2 · CUATRO PRODUCTOS
 
 1. Descomprimí el ZIP en una carpeta que vayas a conservar.
 2. Abrí Felifrio_App.html con Google Chrome o Microsoft Edge.
@@ -14,16 +14,28 @@ SI YA CARGASTE DATOS EN LA VERSIÓN ANTERIOR
 4. Verificá tus clientes y movimientos. Si aparece vacía, usá IMPORTAR
    RESPALDO y seleccioná el JSON que guardaste.
 
-No borres los datos del navegador. La versión 1.1 mejora la lectura y el
-diseño; mantiene el formato de los registros y de los respaldos.
+No borres los datos del navegador. Los registros de prueba anteriores se
+conservan como rolito de 3 kg. Los nuevos productos comienzan sin stock y
+sin precio asignado. Cerrá la versión anterior antes de abrir la nueva;
+después de actualizar, seguí usando la 1.2 para guardar movimientos.
 
 PARA EMPEZAR
 
-Clientes: agregá el comercio y el precio de cada bolsa.
-Producción: registrá un lote de bolsas de 3 kg.
-Repartos: cargá el vehículo y entregá las bolsas en consignación.
-Rendiciones: anotá cuántas quedaron y las pérdidas, si las hubo.
-Cobros: registrá el pago completo o parcial del cliente.
+Productos: rolito de 3 kg, rolito de 10 kg, triturado de 3 kg y triturado
+de 10 kg. Cada uno tiene su stock propio en fábrica, vehículo y comercios.
+
+Clientes: agregá el comercio y el precio del producto seleccionado.
+Para los demás productos, elegí cada variante arriba y hacé clic en PRECIO.
+Los precios se configuran por producto y cliente; no se copian entre variantes.
+Producción: elegí el producto, anotá el lote y la cantidad de bolsas.
+Repartos: elegí qué producto cargás, entregás, retirás o regresás a fábrica.
+Rendiciones: contá cada producto por separado y anotá sus pérdidas.
+Antes de rendir, ese producto debe tener un precio configurado para el cliente.
+Cobros: registrá el pago completo o parcial del saldo total del cliente.
+
+En Inicio, la tabla resume las cuatro variantes y calcula el peso real:
+cantidad de bolsas por 3 o 10 kg, según el producto. Los saldos de clientes
+y los fondos reúnen todos los productos; no son cuatro cajas separadas.
 
 También podés registrar gastos, compras, pagos a proveedores, pérdidas,
 retiros y tareas. Entregar no genera una venta: la deuda se calcula al rendir.
