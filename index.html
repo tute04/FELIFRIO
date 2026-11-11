@@ -530,6 +530,19 @@ async function cloudLogin(email,password){
  cloudSetSession(j);
  try{return await cloudVerifySession()}catch(err){cloudClearSession();throw err}
 }
+async function cloudRegisterFamily(email,password){
+ const normalized=email.trim().toLowerCase();
+ if(normalized!=='trinidadpicatto@gmail.com')throw cloudError('Esta opción es solo para el correo familiar autorizado.');
+ if(password.length<12)throw cloudError('La contraseña debe tener al menos 12 caracteres.');
+ const redirect=location.origin+'/';
+ const response=await fetch(CLOUD_URL+'/auth/v1/signup?redirect_to='+encodeURIComponent(redirect),{
+  method:'POST',headers:cloudHeaders(null,{'Content-Type':'application/json'}),
+  body:JSON.stringify({email:normalized,password})
+ });
+ const result=await response.json().catch(()=>({}));
+ if(!response.ok)throw cloudError(result.msg||result.error_description||result.message||'No se pudo crear la cuenta. Revisá el correo e intentá nuevamente.',response.status);
+ return true;
+}
 async function cloudSendRecovery(email){
  const redirect=location.origin+'/';
  const r=await fetch(CLOUD_URL+'/auth/v1/recover?redirect_to='+encodeURIComponent(redirect),{method:'POST',headers:cloudHeaders(null,{'Content-Type':'application/json'}),body:JSON.stringify({email:email.trim().toLowerCase()})});
@@ -698,21 +711,42 @@ function CloudShell(){
   })().catch(e=>setMessage(e.message||'No se pudo abrir la sesión.')).finally(()=>setLoading(false));
  },[]);
  async function signIn(ev){ev.preventDefault();if(pending)return;setPending(true);setMessage('');try{await cloudLogin(email,password);setPassword('');setActive(true)}catch(e){setMessage(e.message)}finally{setPending(false)}}
+ async function registerFamily(ev){
+  ev.preventDefault();if(pending)return;
+  if(password!==confirmPassword){setMessage('Las contraseñas no coinciden.');return}
+  setPending(true);setMessage('');
+  try{
+   await cloudRegisterFamily(email,password);
+   setPassword('');setConfirmPassword('');setMode('login');
+   setMessage('Registro solicitado. Revisá el correo familiar y confirmá el enlace de Supabase. Después iniciá sesión. Esta cuenta comienza sin clientes ni movimientos.');
+  }catch(e){setMessage(e.message)}finally{setPending(false)}
+ }
  async function recover(ev){ev.preventDefault();if(pending)return;setPending(true);setMessage('');try{await cloudSendRecovery(email);setMessage('Si el correo está registrado, vas a recibir un enlace para cambiar la contraseña. Revisá también Spam.')}catch(e){setMessage(e.message)}finally{setPending(false)}}
  async function changePassword(ev){ev.preventDefault();if(pending)return;if(newPassword!==confirmPassword){setMessage('Las contraseñas no coinciden.');return}setPending(true);setMessage('');try{await cloudChangePassword(newPassword);setNewPassword('');setConfirmPassword('');setMode('login');setMessage('Contraseña actualizada. Iniciá sesión para continuar.')}catch(e){setMessage(e.message)}finally{setPending(false)}}
  if(loading)return R.jsx('main',{className:'cloud-auth',children:'Comprobando acceso a Felifrío…'});
  if(active)return R.jsx(yn,{requestData:cloudRequest,pendingKey:'felifrio.cloud.v1.pending.'+cloudCacheKey(),localTools:R.jsx(CloudTools,{})});
  return R.jsxs('main',{className:'cloud-auth cloud-auth-v19',children:[
   R.jsx('span',{className:'local-badge',children:'FELIFRÍO · ACCESO SEGURO'}),
-  R.jsx('h1',{children:mode==='change-password'?'Nueva contraseña':mode==='recover'?'Recuperar acceso':'Bienvenido a Felifrío'}),
-  R.jsx('p',{children:mode==='recover'?'Te enviaremos un enlace a tu correo para recuperar la cuenta.':mode==='change-password'?'Elegí una contraseña nueva para continuar.':'Ingresá con una cuenta autorizada para administrar el negocio.'}),
+  R.jsx('h1',{children:mode==='change-password'?'Nueva contraseña':mode==='recover'?'Recuperar acceso':mode==='signup'?'Crear cuenta familiar':'Bienvenido a Felifrío'}),
+  R.jsx('p',{children:mode==='recover'?'Te enviaremos un enlace a tu correo para recuperar la cuenta.':mode==='change-password'?'Elegí una contraseña nueva para continuar.':mode==='signup'?'Esta cuenta empezará vacía y será compartida por los integrantes de Felifrío.':'Ingresá con una cuenta autorizada para administrar el negocio.'}),
   mode==='login'&&R.jsxs('form',{onSubmit:signIn,children:[
    R.jsx('label',{htmlFor:'cloud-email',children:'Correo electrónico'}),
    R.jsx('input',{id:'cloud-email',type:'email',autoComplete:'username',required:true,value:email,onChange:e=>setEmail(e.target.value)}),
    R.jsx('label',{htmlFor:'cloud-password',children:'Contraseña'}),
    R.jsx('input',{id:'cloud-password',type:'password',autoComplete:'current-password',required:true,value:password,onChange:e=>setPassword(e.target.value)}),
    R.jsx('button',{className:'button',type:'submit',disabled:pending,children:pending?'Comprobando…':'Ingresar a Felifrío'}),
-   R.jsx('button',{className:'cloud-textlink',type:'button',disabled:pending,onClick:()=>{setMode('recover');setMessage('')},children:'¿Olvidaste tu contraseña?'})
+   R.jsx('button',{className:'cloud-textlink',type:'button',disabled:pending,onClick:()=>{setMode('recover');setMessage('')},children:'¿Olvidaste tu contraseña?'}),
+   R.jsx('button',{className:'cloud-textlink',type:'button',disabled:pending,onClick:()=>{setEmail('trinidadpicatto@gmail.com');setPassword('');setConfirmPassword('');setMode('signup');setMessage('')},children:'Crear cuenta familiar'})
+  ]}),
+  mode==='signup'&&R.jsxs('form',{onSubmit:registerFamily,children:[
+   R.jsx('label',{htmlFor:'family-email',children:'Correo familiar autorizado'}),
+   R.jsx('input',{id:'family-email',type:'email',autoComplete:'email',required:true,readOnly:true,value:email}),
+   R.jsx('label',{htmlFor:'family-password',children:'Crear contraseña (mínimo 12 caracteres)'}),
+   R.jsx('input',{id:'family-password',type:'password',autoComplete:'new-password',required:true,minLength:12,value:password,onChange:e=>setPassword(e.target.value)}),
+   R.jsx('label',{htmlFor:'family-confirm',children:'Repetir contraseña'}),
+   R.jsx('input',{id:'family-confirm',type:'password',autoComplete:'new-password',required:true,minLength:12,value:confirmPassword,onChange:e=>setConfirmPassword(e.target.value)}),
+   R.jsx('button',{className:'button',type:'submit',disabled:pending,children:pending?'Registrando…':'Crear cuenta y enviar confirmación'}),
+   R.jsx('button',{className:'cloud-textlink',type:'button',disabled:pending,onClick:()=>{setMode('login');setPassword('');setConfirmPassword('');setMessage('')},children:'Volver al inicio de sesión'})
   ]}),
   mode==='recover'&&R.jsxs('form',{onSubmit:recover,children:[
    R.jsx('label',{htmlFor:'recover-email',children:'Correo electrónico'}),
